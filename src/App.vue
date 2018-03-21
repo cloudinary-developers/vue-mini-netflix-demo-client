@@ -4,13 +4,24 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <img src="./assets/logo.svg" alt="Netflix" width="112" height="28">
+            <img src="https://cloudinary-res.cloudinary.com/image/upload/v1521663307/MiniFlix-Logo_620x180.png" alt="Netflix" width="112" height="28">
           </a>
 
            <div class="navbar-menu">
             <div class="navbar-end">
-              <a class="button" @click="showModal = !showModal">
+              <a class="button navbar-item" @click="showModal = !showModal">
                 Upload
+              </a>
+              <a class="button navbar-item">
+                <social-sharing 
+                  title="Build a Mini Netflix from scratch" 
+                  url="https://cloudinary.gitbooks.io/build-a-mini-netflix-clone-with-vue/content" inline-template>
+                  <div>
+                    <network network="twitter">
+                      Share
+                    </network>
+                  </div>
+                </social-sharing>
               </a>
             </div>
           </div>
@@ -92,5 +103,6 @@ export default {
 .navbar-item {
   height: 25px;
   width: auto;
+  margin-right: 10px;
 }
 </style>

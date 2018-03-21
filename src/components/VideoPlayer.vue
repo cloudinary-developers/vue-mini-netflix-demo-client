@@ -4,30 +4,28 @@
         id="trailer"
         autoplay
         loop
+        controls
         class="cld-video-player trailer-bg__video">
       </video>
       <div class="trailer-content">
         <h1 class="is-size-1	has-text-weight-bold">{{movie.title || 'Black Panther'}}</h1>
-        <button class="button" @click="playPause()">
-          <i class="fa fa-play"></i> &nbsp; / &nbsp; 
-          <i class="fa fa-pause"></i> 
-          &nbsp; Trailer</button>
       </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      paused: false
-    };
-  },
   props: ['cloudinaryInstance', 'movie'],
   mounted() {
     this.player = this.cloudinaryInstance.videoPlayer('trailer', {
-      controls: false,
-      transformation: { crop: 'scale', width: 1200 }
+      transformation: {
+        crop: 'crop',
+        width: 1200,
+        aspect_ratio: '16:9',
+        x: 10,
+        y: 100,
+        gravity: 'center'
+      }
     });
     this.player.source(
       this.movie.trailer ||
@@ -44,17 +42,6 @@ export default {
       this.player.source(newMovie.trailer);
     }
   },
-  methods: {
-    playPause() {
-      if (this.paused) {
-        this.player.play();
-        this.paused = false;
-      } else {
-        this.player.pause();
-        this.paused = true;
-      }
-    }
-  }
 };
 </script>
 

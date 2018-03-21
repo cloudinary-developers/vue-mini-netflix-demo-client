@@ -12,7 +12,8 @@
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.7",
     "sweet-modal-vue": "^2.0.0",
-    "vue": "^2.5.13"
+    "vue": "^2.5.13",
+    "vue-social-sharing": "^2.3.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-beta.6",
