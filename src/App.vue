@@ -9,7 +9,9 @@
 
            <div class="navbar-menu">
             <div class="navbar-end">
-              <!-- Upload button here -->
+              <a class="button" @click="showModal = !showModal">
+                Upload
+              </a>
             </div>
           </div>
         </div>
@@ -18,16 +20,28 @@
 
     <VideoPlayer :cloudinaryInstance="cloudinaryInstance" :movie="movie"></VideoPlayer>
 
+    <div class="container">
+      <h2 class="is-size-3">Movies</h2>
+      <VideoList :cloudinaryInstance="cloudinaryInstance" @choose-movie="updatePlayer" :movies="movies"></VideoList>
+    </div>
+    <UploadModal :showModal="showModal" @handle-upload="uploadToServer"></UploadModal>
   </div>
 </template>
 
 
 <script>
+import axios from 'axios';
 import VideoPlayer from './components/VideoPlayer.vue';
+import VideoList from './components/VideoList.vue';
+import UploadModal from './components/UploadModal.vue';
+
 export default {
   data() {
     return {
       movie: {},
+      movies: [],
+      showModal: false,
+      url: 'https://wt-nwambachristian-gmail_com-0.run.webtask.io/server/movies'
     }
   },
   created() {
@@ -35,9 +49,26 @@ export default {
       cloud_name: 'christekh',
       secure: true
     });
+    axios.get(this.url)
+      .then(res => {
+        this.movies = res.data;
+      })
+  },
+  methods: {
+    updatePlayer(movie) {
+      this.movie = movie;
+    },
+    uploadToServer(data) {
+      axios.post(this.url, data).then(res => {
+        this.movies = [...this.movies, res.data];
+        this.showModal = false;
+      })
+    }
   },
   components: {
-    VideoPlayer
+    VideoPlayer,
+    VideoList,
+    UploadModal
   }
 };
 </script>
