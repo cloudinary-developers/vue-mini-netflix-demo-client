@@ -18,6 +18,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      paused: false
+    };
+  },
   props: ['cloudinaryInstance', 'movie'],
   mounted() {
     this.player = this.cloudinaryInstance.videoPlayer('trailer', {
@@ -41,7 +46,13 @@ export default {
   },
   methods: {
     playPause() {
-      this.paused ? this.player.play() : this.player.pause();
+      if (this.paused) {
+        this.player.play();
+        this.paused = false;
+      } else {
+        this.player.pause();
+        this.paused = true;
+      }
     }
   }
 };
