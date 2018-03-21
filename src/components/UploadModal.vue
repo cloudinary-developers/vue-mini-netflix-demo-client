@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     startUpload(type) {
-      cloudinary.openUploadWidget(
+      window.cloudinary.openUploadWidget(
         { cloud_name: 'christekh', upload_preset: 'idcidr0h' },
         (error, result) => {
           console.log(error, result[0]);
