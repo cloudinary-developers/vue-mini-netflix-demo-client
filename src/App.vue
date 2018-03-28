@@ -46,13 +46,16 @@ import VideoPlayer from './components/VideoPlayer.vue';
 import VideoList from './components/VideoList.vue';
 import UploadModal from './components/UploadModal.vue';
 
+const miniflixService = 'https://miniflix.cloudinary.auth0-extend.com/server/movies';
+
+
 export default {
   data() {
     return {
       movie: {},
       movies: [],
       showModal: false,
-      url: 'https://wt-nwambachristian-gmail_com-0.run.webtask.io/server/movies'
+      url: miniflixService
     }
   },
   created() {
